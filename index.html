@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Working with Chart.js</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      html {
+        color: #333538;
+        font-family: "Lato", sans-serif;
+        line-height: 1.6;
+        padding: 0;
+        margin: 0;
+      }
+      #title {
+        font-family: "Merriweather";
+        text-align: center;
+        padding: 30px;
+        font-size: 28px;
+        letter-spacing: -0.01em;
+        color: #333;
+      }
+      #legend {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 10px 10px;
+        font-size: 12px;
+      }
+      #legend .item {
+        line-height: 12px;
+        padding: 0 10px 0 4px;
+      }
+
+      #legend .item.high {
+        border-left: 12px solid #4169e1;
+      }
+
+      #legend .item.low {
+        border-left: 12px solid #800080;
+      }
+
+      #chart-wrapper {
+        height: 1000px;
+      }
+
+      #footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 10px;
+        color: #aaa;
+        font-size: 12px;
+      }
+
+      #footer a {
+        color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="title">
+      African Countries by population (2020)
+    </div>
+    <div id="legend">
+      <div class="item low">Low</div>
+      <div class="item high">High</div>
+    </div>
+    <div id="chart-wrapper">
+      <canvas id="chart"></canvas>
+    </div>
+    <div id="footer">
+      <div class="left">
+        Source:
+        <a
+          href="https://www.worldometers.info/population/countries-in-africa-by-population/"
+          target="_blank"
+          >Population</a
+        >
+        / Worldmeters
+      </div>
+      <div class="right">
+        <a href="https://createwithdata.com/chartjs-and-csv/" target="_blank"
+          >Reference</a
+        >
+      </div>
+      
+    </div>
+    <script>
+      Chart.defaults.global.defaultFontFamily = "Lato";
+      Chart.defaults.global.defaultFontColor = "#333";
+      function makeChart(countries) {
+        var countryLabels = countries.map(d => d.Country);
+        var population = countries.map(d => d.Population);
+
+        var countryColors = countries.map(d => {
+          return d.Population <= 50000000 ? "#800080" : "#4169E1";
+        });
+
+        /*         console.log(countryLabels);
+        console.log(population); */
+
+        var chart = new Chart("chart", {
+          type: "horizontalBar",
+          options: {
+            maintainAspectRatio: false,
+            legend: {
+              display: false
+            },
+            scales: {
+              xAxes: [
+                {
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Population by Country",
+                    fontSize: 16
+                  }
+                }
+              ]
+            }
+          },
+          data: {
+            labels: countryLabels,
+            datasets: [
+              {
+                data: population,
+                backgroundColor: countryColors
+              }
+            ]
+          }
+        });
+      }
+
+      d3.csv("./african-population-2020.csv").then(makeChart);
+    </script>
+  </body>
+</html>
