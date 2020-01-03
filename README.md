@@ -3,26 +3,25 @@
 Working with Chart.js, D3.js and CSV
 ------------------------------------
 
+## Chart.js
+
 Chart.js is an open source JavaScript charting library
 
+## D3.js
+
+D3.js is a JavaScript library for producing dynamic, interactive data visualizations in web browsers.
+
 ## Chart Types
-This repository contains some built-in chart types from the following list:
 
-* line
-* bar
-* radar
-* doughnut and pie
-* polar area
-* bubble
-* scatter
+This repository uses horizontalBar Chart to visualize African Countries by population (2020).
 
-All the charts here use the Chart.js CDN.
+D3 is used to load the CSV file. 
 
 <hr>
 
 ## References:
 
-1. [createwithdata](https://www.createwithdata.com/getting-started-with-chartjs/)
-2. [chartjs.org](https://www.chartjs.org/docs/latest/getting-started/)
-3. [geeksforgeeks.org](https://www.geeksforgeeks.org/javascript-chart-js/)
-4. [ulili](https://www.stanleyulili.com/javascript/beginner-guide-to-chartjs//)
+1.	[createwithdata.com](https://www.createwithdata.com/chartjs-and-csv/)
+2.	[d3js.org](https://d3js.org/)
+3.	[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+4. [worldometers](https://www.worldometers.info/population/countries-in-africa-by-population/)
