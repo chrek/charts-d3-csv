@@ -13,7 +13,7 @@ D3.js is a JavaScript library for producing dynamic, interactive data visualizat
 
 ## Chart Types
 
-This repository uses horizontalBar Chart to visualize African Countries by population (2020).
+This repository uses horizontalBar Chart from chart.js to visualize African Countries by population (2020).
 
 D3 is used to load the CSV file. 
 
